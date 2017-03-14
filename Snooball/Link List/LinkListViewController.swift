@@ -15,6 +15,10 @@ class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, 
     var subreddit: Subreddit
     var listingFetcher: ListingFetcher<Link>
     
+    var tableNode: ASTableNode {
+        get { return self.node as! ASTableNode }
+    }
+    
     init() {
         self.subreddit = Subreddit(subreddit: "popular")
         self.listingFetcher = ListingFetcher(subreddit: self.subreddit, sortOrder: .hot)
@@ -27,12 +31,16 @@ class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, 
         self.title = self.subreddit.displayName
     }
     
-    var tableNode: ASTableNode {
-        get { return self.node as! ASTableNode }
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = self.tableNode.indexPathForSelectedRow {
+            self.tableNode.deselectRow(at: selectedIndexPath, animated: false)
+        }
     }
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
@@ -47,6 +55,11 @@ class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, 
         let cell = LinkCellNode(link: self.listingFetcher.things[indexPath.row])
         
         return cell
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        let detailVC = LinkDetailViewController(link: self.listingFetcher.things[indexPath.row])
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func tableNode(_: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {

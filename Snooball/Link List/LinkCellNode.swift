@@ -10,9 +10,9 @@ import reddift
 import AsyncDisplayKit
 import OpenGraph
 
-fileprivate let PADDING: CGFloat = 16
-fileprivate let PREVIEW_IMAGE_SIDELEN: CGFloat = 75
-fileprivate let PREVIEW_CORNER_RADIUS: CGFloat = 3
+fileprivate let INTERITEM_PADDING: CGFloat = 16
+fileprivate let THUMBNAIL_SIDELEN: CGFloat = 75
+fileprivate let THUMBNAIL_CORNER_RADIUS: CGFloat = 3
 
 class LinkCellNode: ASCellNode {
     let titleLabel = ASTextNode()
@@ -40,7 +40,7 @@ class LinkCellNode: ASCellNode {
         self.automaticallyManagesSubnodes = true
         self.titleLabel.maximumNumberOfLines = 0
         self.previewImageNode.imageModificationBlock = { image in
-            return LinkCellNode.roundedCroppedImage(image: image, cornerRadius: PREVIEW_CORNER_RADIUS)
+            return LinkCellNode.roundedCroppedImage(image: image, cornerRadius: THUMBNAIL_CORNER_RADIUS)
         }
         
         self.titleLabel.isLayerBacked = true
@@ -71,7 +71,7 @@ class LinkCellNode: ASCellNode {
     
     func applyLink(link: Link) {
         let titlePara = NSMutableParagraphStyle()
-        titlePara.lineHeightMultiple = 1.2
+        titlePara.lineHeightMultiple = Constants.titleTextLineHeightMultiplier
         self.titleLabel.attributedText = NSAttributedString(string: link.title, attributes: [
             NSFontAttributeName: UIFont.preferredFont(forTextStyle: .subheadline),
             NSParagraphStyleAttributeName: titlePara
@@ -105,7 +105,7 @@ class LinkCellNode: ASCellNode {
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
-        let size = CGSize(width: PREVIEW_IMAGE_SIDELEN, height: PREVIEW_IMAGE_SIDELEN)
+        let size = CGSize(width: THUMBNAIL_SIDELEN, height: THUMBNAIL_SIDELEN)
         self.previewImageNode.style.minSize = size
         self.previewImageNode.style.maxSize = size
         
@@ -113,7 +113,7 @@ class LinkCellNode: ASCellNode {
         textVerticalStack.style.flexGrow = 1.0
         textVerticalStack.style.flexShrink = 1.0
     
-        let titleInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: PADDING)
+        let titleInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 16)
         textVerticalStack.children = [ASInsetLayoutSpec(insets: titleInsets, child: self.titleLabel)]
         
         let horizontalContentStack = ASStackLayoutSpec.horizontal()
@@ -132,7 +132,7 @@ class LinkCellNode: ASCellNode {
         let wrapperVerticalStack = ASStackLayoutSpec.vertical()
         wrapperVerticalStack.children = [horizontalContentStack, metadataBarLayoutSpec(), separatorNode]
         
-        let cellInsets = UIEdgeInsets(top: PADDING, left: PADDING, bottom: 0, right: PADDING)
+        let cellInsets = UIEdgeInsets(top: Constants.verticalPageMargin, left: Constants.horizontalPageMargin, bottom: 0, right: Constants.horizontalPageMargin)
         return ASInsetLayoutSpec(insets: cellInsets, child: wrapperVerticalStack)
     }
     
@@ -146,7 +146,7 @@ class LinkCellNode: ASCellNode {
             ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 3, 0, 0), child: commentCountLabel)
         ]
         
-        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: PADDING / 2, left: 0, bottom: PADDING, right: 0), child: horizontalStack)
+        return ASInsetLayoutSpec(insets: UIEdgeInsets(top: INTERITEM_PADDING / 2, left: 0, bottom: Constants.verticalPageMargin, right: 0), child: horizontalStack)
     }
     
     func metadataAttributedString(string: String, bold: Bool = false) -> NSAttributedString {
@@ -163,12 +163,12 @@ class LinkCellNode: ASCellNode {
     
     static var placeholderImage: UIImage? {
         get {
-            let size = CGSize(width: PREVIEW_IMAGE_SIDELEN, height: PREVIEW_IMAGE_SIDELEN)
+            let size = CGSize(width: THUMBNAIL_SIDELEN, height: THUMBNAIL_SIDELEN)
             UIGraphicsBeginImageContextWithOptions(size, false, 0)
             UIColor.lightGray.setFill()
             let drawingRect = CGRect(origin: CGPoint.zero, size: size)
             
-            let maskPath = UIBezierPath(roundedRect: drawingRect, cornerRadius: PREVIEW_CORNER_RADIUS)
+            let maskPath = UIBezierPath(roundedRect: drawingRect, cornerRadius: THUMBNAIL_CORNER_RADIUS)
             maskPath.addClip()
             
             let context = UIGraphicsGetCurrentContext()
@@ -184,16 +184,16 @@ class LinkCellNode: ASCellNode {
     static func roundedCroppedImage(image: UIImage, cornerRadius radius: CGFloat) -> UIImage {
         var modifiedImage: UIImage?
         
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: PREVIEW_IMAGE_SIDELEN, height: PREVIEW_IMAGE_SIDELEN), false, 0)
+        UIGraphicsBeginImageContextWithOptions(CGSize(width: THUMBNAIL_SIDELEN, height: THUMBNAIL_SIDELEN), false, 0)
         
         var drawingRect = CGRect(origin: CGPoint.zero, size: image.size)
         let ratio: CGFloat = image.size.width / image.size.height
         if ratio > 1 {
-            let width = PREVIEW_IMAGE_SIDELEN * ratio
-            drawingRect = CGRect(x: -(width - PREVIEW_IMAGE_SIDELEN) / 2, y: 0, width: width, height: PREVIEW_IMAGE_SIDELEN)
+            let width = THUMBNAIL_SIDELEN * ratio
+            drawingRect = CGRect(x: -(width - THUMBNAIL_SIDELEN) / 2, y: 0, width: width, height: THUMBNAIL_SIDELEN)
         } else {
-            let height = PREVIEW_IMAGE_SIDELEN / ratio
-            drawingRect = CGRect(x: 0, y: -(height - PREVIEW_IMAGE_SIDELEN) / 2, width: PREVIEW_IMAGE_SIDELEN, height: height)
+            let height = THUMBNAIL_SIDELEN / ratio
+            drawingRect = CGRect(x: 0, y: -(height - THUMBNAIL_SIDELEN) / 2, width: THUMBNAIL_SIDELEN, height: height)
         }
         
         let maskPath = UIBezierPath(roundedRect: drawingRect, cornerRadius: radius)
