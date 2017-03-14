@@ -10,7 +10,7 @@ import UIKit
 import AsyncDisplayKit
 import reddift
 
-class ViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
+class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
     
     var subreddit: Subreddit
     var listingFetcher: ListingFetcher<Link>

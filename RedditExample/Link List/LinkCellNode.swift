@@ -97,7 +97,7 @@ class LinkCellNode: ASCellNode {
             self.previewImageNode.url = nil
         }
         
-        self.subredditLabel.attributedText = metadataAttributedString(string: link.subreddit)
+        self.subredditLabel.attributedText = metadataAttributedString(string: link.subreddit, bold: true)
         self.scoreLabel.attributedText = metadataAttributedString(string: LinkCellNode.numberFormatter.string(from: NSNumber(integerLiteral: link.score)) ?? "0")
         self.commentCountLabel.attributedText = metadataAttributedString(string: LinkCellNode.numberFormatter.string(from: NSNumber(integerLiteral: link.numComments)) ?? "0")
         
@@ -149,10 +149,13 @@ class LinkCellNode: ASCellNode {
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: PADDING / 2, left: 0, bottom: PADDING, right: 0), child: horizontalStack)
     }
     
-    func metadataAttributedString(string: String) -> NSAttributedString {
-        let attributes = [
+    func metadataAttributedString(string: String, bold: Bool = false) -> NSAttributedString {
+        let fontSize = UIFont.preferredFont(forTextStyle: .caption1).pointSize
+        let weight = bold ? UIFontWeightSemibold : UIFontWeightRegular
+        
+        var attributes = [
             NSForegroundColorAttributeName: UIColor.lightGray,
-            NSFontAttributeName: UIFont.preferredFont(forTextStyle: .caption1)
+            NSFontAttributeName: UIFont.systemFont(ofSize: fontSize, weight: weight)
         ]
         
         return NSAttributedString(string: string, attributes: attributes)
