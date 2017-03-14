@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6DE6F9B0A616169CBFCF0452 /* Pods_RedditExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 277615545E2E09A009742A98 /* Pods_RedditExample.framework */; };
+		8D63E5F8FF9C7D1B6137233F /* Pods_Snooball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42B0A34DC17C9D12D16FD8A /* Pods_Snooball.framework */; };
 		D04B63EB1E75D5FE0019AEFE /* ListingFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63EA1E75D5FE0019AEFE /* ListingFetcher.swift */; };
 		D06ACD4B1E779D9B00DA9D43 /* LinkCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD491E779D9B00DA9D43 /* LinkCellNode.swift */; };
 		D06ACD4C1E779D9B00DA9D43 /* LinkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD4A1E779D9B00DA9D43 /* LinkListViewController.swift */; };
@@ -18,18 +18,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		103DB45DEB15313E635C62E8 /* Pods-RedditExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedditExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-RedditExample/Pods-RedditExample.release.xcconfig"; sourceTree = "<group>"; };
-		277615545E2E09A009742A98 /* Pods_RedditExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RedditExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1C56283D0640CBFF5315FA58 /* Pods-Snooball.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snooball.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snooball/Pods-Snooball.release.xcconfig"; sourceTree = "<group>"; };
+		C70C7C69D1C20B87023E3F84 /* Pods-Snooball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snooball.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snooball/Pods-Snooball.debug.xcconfig"; sourceTree = "<group>"; };
 		D04B63EA1E75D5FE0019AEFE /* ListingFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingFetcher.swift; sourceTree = "<group>"; };
 		D06ACD491E779D9B00DA9D43 /* LinkCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCellNode.swift; sourceTree = "<group>"; };
 		D06ACD4A1E779D9B00DA9D43 /* LinkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkListViewController.swift; sourceTree = "<group>"; };
 		D0E370EF1E779CE900032FBA /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		D0ECB8431E62292C003D4B52 /* RedditExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RedditExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0ECB8431E62292C003D4B52 /* Snooball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snooball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ECB8461E62292C003D4B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0ECB84D1E62292C003D4B52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0ECB8521E62292C003D4B52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FA5F5B1E6237CF00B9E7B5 /* reddift_config.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = reddift_config.json; sourceTree = "<group>"; };
-		EE5998452BBDBFF16BD8DC59 /* Pods-RedditExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RedditExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RedditExample/Pods-RedditExample.debug.xcconfig"; sourceTree = "<group>"; };
+		F42B0A34DC17C9D12D16FD8A /* Pods_Snooball.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Snooball.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,7 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6DE6F9B0A616169CBFCF0452 /* Pods_RedditExample.framework in Frameworks */,
+				8D63E5F8FF9C7D1B6137233F /* Pods_Snooball.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +47,7 @@
 		99EEACB8A6845EDEB91FC4A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				277615545E2E09A009742A98 /* Pods_RedditExample.framework */,
+				F42B0A34DC17C9D12D16FD8A /* Pods_Snooball.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -64,7 +64,7 @@
 		D0ECB83A1E62292C003D4B52 = {
 			isa = PBXGroup;
 			children = (
-				D0ECB8451E62292C003D4B52 /* RedditExample */,
+				D0ECB8451E62292C003D4B52 /* Snooball */,
 				D0ECB8441E62292C003D4B52 /* Products */,
 				DC71D20148BFA0A380FA41F2 /* Pods */,
 				99EEACB8A6845EDEB91FC4A8 /* Frameworks */,
@@ -74,12 +74,12 @@
 		D0ECB8441E62292C003D4B52 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D0ECB8431E62292C003D4B52 /* RedditExample.app */,
+				D0ECB8431E62292C003D4B52 /* Snooball.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D0ECB8451E62292C003D4B52 /* RedditExample */ = {
+		D0ECB8451E62292C003D4B52 /* Snooball */ = {
 			isa = PBXGroup;
 			children = (
 				D0ECB8461E62292C003D4B52 /* AppDelegate.swift */,
@@ -87,7 +87,7 @@
 				D06ACD481E779D9B00DA9D43 /* Link List */,
 				D0FA5F5A1E6237BB00B9E7B5 /* Supporting */,
 			);
-			path = RedditExample;
+			path = Snooball;
 			sourceTree = "<group>";
 		};
 		D0FA5F5A1E6237BB00B9E7B5 /* Supporting */ = {
@@ -104,8 +104,8 @@
 		DC71D20148BFA0A380FA41F2 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				EE5998452BBDBFF16BD8DC59 /* Pods-RedditExample.debug.xcconfig */,
-				103DB45DEB15313E635C62E8 /* Pods-RedditExample.release.xcconfig */,
+				C70C7C69D1C20B87023E3F84 /* Pods-Snooball.debug.xcconfig */,
+				1C56283D0640CBFF5315FA58 /* Pods-Snooball.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -113,9 +113,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D0ECB8421E62292C003D4B52 /* RedditExample */ = {
+		D0ECB8421E62292C003D4B52 /* Snooball */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D0ECB8551E62292C003D4B52 /* Build configuration list for PBXNativeTarget "RedditExample" */;
+			buildConfigurationList = D0ECB8551E62292C003D4B52 /* Build configuration list for PBXNativeTarget "Snooball" */;
 			buildPhases = (
 				7245F442BFACCC2D57A1315B /* [CP] Check Pods Manifest.lock */,
 				D0ECB83F1E62292C003D4B52 /* Sources */,
@@ -128,9 +128,9 @@
 			);
 			dependencies = (
 			);
-			name = RedditExample;
-			productName = RedditExample;
-			productReference = D0ECB8431E62292C003D4B52 /* RedditExample.app */;
+			name = Snooball;
+			productName = Snooball;
+			productReference = D0ECB8431E62292C003D4B52 /* Snooball.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -139,6 +139,7 @@
 		D0ECB83B1E62292C003D4B52 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = SNB;
 				LastSwiftUpdateCheck = 0820;
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Justin Hill";
@@ -150,8 +151,8 @@
 					};
 				};
 			};
-			buildConfigurationList = D0ECB83E1E62292C003D4B52 /* Build configuration list for PBXProject "RedditExample" */;
-			compatibilityVersion = "Xcode 3.2";
+			buildConfigurationList = D0ECB83E1E62292C003D4B52 /* Build configuration list for PBXProject "Snooball" */;
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -163,7 +164,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D0ECB8421E62292C003D4B52 /* RedditExample */,
+				D0ECB8421E62292C003D4B52 /* Snooball */,
 			);
 		};
 /* End PBXProject section */
@@ -194,7 +195,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RedditExample/Pods-RedditExample-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Snooball/Pods-Snooball-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		7245F442BFACCC2D57A1315B /* [CP] Check Pods Manifest.lock */ = {
@@ -224,7 +225,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RedditExample/Pods-RedditExample-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Snooball/Pods-Snooball-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -339,14 +340,14 @@
 		};
 		D0ECB8561E62292C003D4B52 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EE5998452BBDBFF16BD8DC59 /* Pods-RedditExample.debug.xcconfig */;
+			baseConfigurationReference = C70C7C69D1C20B87023E3F84 /* Pods-Snooball.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AJ5Q7E6DM4;
-				INFOPLIST_FILE = RedditExample/Info.plist;
+				INFOPLIST_FILE = Snooball/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.frankly.RedditExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frankly.Snooball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "84ed1017-d286-499f-86d3-d507d0ed69c5";
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Development Wildcard";
@@ -356,14 +357,14 @@
 		};
 		D0ECB8571E62292C003D4B52 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 103DB45DEB15313E635C62E8 /* Pods-RedditExample.release.xcconfig */;
+			baseConfigurationReference = 1C56283D0640CBFF5315FA58 /* Pods-Snooball.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AJ5Q7E6DM4;
-				INFOPLIST_FILE = RedditExample/Info.plist;
+				INFOPLIST_FILE = Snooball/Supporting/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.frankly.RedditExample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.frankly.Snooball;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -372,7 +373,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D0ECB83E1E62292C003D4B52 /* Build configuration list for PBXProject "RedditExample" */ = {
+		D0ECB83E1E62292C003D4B52 /* Build configuration list for PBXProject "Snooball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0ECB8531E62292C003D4B52 /* Debug */,
@@ -381,7 +382,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D0ECB8551E62292C003D4B52 /* Build configuration list for PBXNativeTarget "RedditExample" */ = {
+		D0ECB8551E62292C003D4B52 /* Build configuration list for PBXNativeTarget "Snooball" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				D0ECB8561E62292C003D4B52 /* Debug */,

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  RedditExample
+//  Snooball
 //
 //  Created by Justin Hill on 2/25/17.
 //  Copyright © 2017 Justin Hill. All rights reserved.

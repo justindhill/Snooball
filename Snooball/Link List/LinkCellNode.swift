@@ -1,6 +1,6 @@
 //
-//  ListingCellNode.swift
-//  RedditExample
+//  LinkCellNode.swift
+//  Snooball
 //
 //  Created by Justin Hill on 3/12/17.
 //  Copyright © 2017 Justin Hill. All rights reserved.
@@ -153,7 +153,7 @@ class LinkCellNode: ASCellNode {
         let fontSize = UIFont.preferredFont(forTextStyle: .caption1).pointSize
         let weight = bold ? UIFontWeightSemibold : UIFontWeightRegular
         
-        var attributes = [
+        let attributes = [
             NSForegroundColorAttributeName: UIColor.lightGray,
             NSFontAttributeName: UIFont.systemFont(ofSize: fontSize, weight: weight)
         ]

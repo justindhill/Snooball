@@ -1,4 +1,4 @@
-target 'RedditExample' do
+target 'Snooball' do
   use_frameworks!
   pod 'AsyncDisplayKit'
   pod 'reddift'
