@@ -9,11 +9,14 @@
 import Foundation
 import reddift
 
-class ListingFetcher: NSObject {
+fileprivate let SERIAL_QUEUE_LABEL = "com.justinhill.snooball.listing_fetcher"
+
+
+class ListingFetcher<T: Thing>: NSObject {
     var paginator: Paginator? = Paginator()
     let subreddit: Subreddit
     let sortOrder: LinkSortType
-    private(set) var links = [Link]()
+    private(set) var things = [T]()
     
     private var _fetching = false
     var fetching: Bool {
@@ -33,7 +36,6 @@ class ListingFetcher: NSObject {
         }
     }
     
-    static let SERIAL_QUEUE_LABEL = "com.justinhill.snooball"
     let serialQueue = DispatchQueue(label: SERIAL_QUEUE_LABEL)
     
     init(subreddit: Subreddit, sortOrder: LinkSortType) {
@@ -42,7 +44,7 @@ class ListingFetcher: NSObject {
         super.init()
     }
     
-    func fetchMore(completion outerCompletion: @escaping (_ error: Error?, _ newLinks: Int) -> Void) {
+    func fetchMore(completion outerCompletion: @escaping (_ error: Error?, _ newThings: Int) -> Void) {
         do {
             guard let paginator = self.paginator else {
                 outerCompletion(NSError(domain: "ListingFetcher", code: 0, userInfo: [NSLocalizedDescriptionKey: "Some unknown error happened"]), 0)
@@ -54,7 +56,7 @@ class ListingFetcher: NSObject {
             }
             
             try AppDelegate.shared.session?.getList(paginator, subreddit: subreddit, sort: self.sortOrder, timeFilterWithin: .all, completion: { (result) in
-                guard let links = result.value?.children as? [Link] else {
+                guard let things = result.value?.children as? [T] else {
                     DispatchQueue.main.async {
                         outerCompletion(NSError(domain: "ListingFetcher", code: 0, userInfo: [NSLocalizedDescriptionKey: "Some unknown error happened"]), 0)
                     }
@@ -63,14 +65,14 @@ class ListingFetcher: NSObject {
                 }
             
                 self.serialQueue.sync {
-                    self.links = (self.links + links)
+                    self.things = (self.things + things)
                     self._fetching = false
                     self._moreAvailable = result.value?.paginator.isVacant == false
                     self.paginator = result.value?.paginator
                 }
                 
                 DispatchQueue.main.async {
-                    outerCompletion(nil, links.count)
+                    outerCompletion(nil, things.count)
                 }
             })
         } catch {

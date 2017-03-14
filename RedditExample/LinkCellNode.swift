@@ -26,6 +26,13 @@ class LinkCellNode: ASCellNode {
     let commentsIconNode = ASImageNode()
     let separatorNode = ASDisplayNode()
     
+    static var numberFormatter: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        
+        return formatter
+    }()
+    
     init(link: Link) {
         self.link = link
         
@@ -45,8 +52,11 @@ class LinkCellNode: ASCellNode {
         self.commentsIconNode.isLayerBacked = true
         self.separatorNode.isLayerBacked = true
         
+        self.commentsIconNode.contentMode = UIViewContentMode.center
         self.commentsIconNode.image = UIImage(named: "comments")
         self.commentsIconNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(.lightGray)
+
+        self.scoreIconNode.contentMode = UIViewContentMode.center
         self.scoreIconNode.image = UIImage(named: "score")
         self.scoreIconNode.imageModificationBlock = ASImageNodeTintColorModificationBlock(.lightGray)
         
@@ -88,8 +98,8 @@ class LinkCellNode: ASCellNode {
         }
         
         self.subredditLabel.attributedText = metadataAttributedString(string: link.subreddit)
-        self.scoreLabel.attributedText = metadataAttributedString(string: String(link.score))
-        self.commentCountLabel.attributedText = metadataAttributedString(string: String(link.numComments))
+        self.scoreLabel.attributedText = metadataAttributedString(string: LinkCellNode.numberFormatter.string(from: NSNumber(integerLiteral: link.score)) ?? "0")
+        self.commentCountLabel.attributedText = metadataAttributedString(string: LinkCellNode.numberFormatter.string(from: NSNumber(integerLiteral: link.numComments)) ?? "0")
         
         self.setNeedsLayout()
     }
@@ -130,9 +140,9 @@ class LinkCellNode: ASCellNode {
         let horizontalStack = ASStackLayoutSpec.horizontal()
         horizontalStack.children = [
             self.subredditLabel,
-            ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 6, 0, 0), child: scoreIconNode),
+            ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 7, 0, 0), child: scoreIconNode),
             ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 3, 0, 0), child: scoreLabel),
-            ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 6, 0, 0), child: commentsIconNode),
+            ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 7, 0, 0), child: commentsIconNode),
             ASInsetLayoutSpec(insets: UIEdgeInsetsMake(0, 3, 0, 0), child: commentCountLabel)
         ]
         

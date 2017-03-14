@@ -13,7 +13,7 @@ import reddift
 class ViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
     
     var subreddit: Subreddit
-    var listingFetcher: ListingFetcher
+    var listingFetcher: ListingFetcher<Link>
     
     init() {
         self.subreddit = Subreddit(subreddit: "popular")
@@ -40,17 +40,17 @@ class ViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableD
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
-        return self.listingFetcher.links.count
+        return self.listingFetcher.things.count
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
-        let cell = LinkCellNode(link: self.listingFetcher.links[indexPath.row])
+        let cell = LinkCellNode(link: self.listingFetcher.things[indexPath.row])
         
         return cell
     }
     
     func tableNode(_: ASTableNode, willBeginBatchFetchWith context: ASBatchContext) {
-        let priorCount = self.listingFetcher.links.count
+        let priorCount = self.listingFetcher.things.count
         self.listingFetcher.fetchMore { [weak self] (error, newLinkCount) in
             if let error = error {
                 print(error)
