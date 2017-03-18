@@ -31,6 +31,7 @@ class SelfLinkDetailHeader: ASCellNode {
         self.automaticallyManagesSubnodes = true
         
         self.imageNode.backgroundColor = UIColor.lightGray
+        self.imageNode.contentMode = .scaleAspectFit
         
         self.scoreIconNode.image = UIImage(named: "score")
         self.upvoteRatioIconNode.image = UIImage(named: "score")
@@ -45,6 +46,7 @@ class SelfLinkDetailHeader: ASCellNode {
         self.upvoteRatioLabel.attributedText = NSAttributedString(string: String(link.upvoteRatio))
         self.timeAgoLabel.attributedText = NSAttributedString(string: String(link.createdUtc))
         self.selfTextLabel.attributedText = NSAttributedString(string: String(link.selftext), attributes: self.selfTextFontAttributes())
+        self.authorInfoLabel.attributedText = NSAttributedString(string: "by \(link.author) in \(link.subreddit)")
         
         if let url = URL(string: link.thumbnail) {
             self.imageNode.url = url
@@ -54,7 +56,7 @@ class SelfLinkDetailHeader: ASCellNode {
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let headerMargins = UIEdgeInsetsMake(Constants.verticalPageMargin, Constants.horizontalPageMargin, 0, Constants.horizontalPageMargin)
         
-        let photoContainer = ASRatioLayoutSpec(ratio: (16.0 / 9.0), child: ASWrapperLayoutSpec(layoutElement: self.imageNode))
+        let photoContainer = ASRatioLayoutSpec(ratio: (9/16), child: self.imageNode)
         photoContainer.style.preferredLayoutSize = ASLayoutSizeMake(ASDimensionMake("100%"), ASDimensionAuto)
         
         let postInfoStack = ASInsetLayoutSpec(insets: headerMargins, child:
@@ -75,14 +77,18 @@ class SelfLinkDetailHeader: ASCellNode {
     
     private func postMetadataLayoutSpec() -> ASLayoutSpec {
         return ASInsetLayoutSpec(insets: UIEdgeInsets(top: InterItemVerticalSpacing, left: 0, bottom: 0, right: 0), child:
-            ASStackLayoutSpec(direction: .horizontal, spacing: 3, justifyContent: .start, alignItems: .center, children: [
-                self.scoreIconNode,
-                self.scoreLabel,
-                ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0), child: self.upvoteRatioIconNode),
-                self.upvoteRatioLabel,
-                ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0), child: self.timeAgoIconNode),
-                self.timeAgoLabel
-            ])
+            ASStackLayoutSpec(direction: .vertical, spacing: Constants.verticalPageMargin / 2, justifyContent: .start, alignItems: .start, children: [
+                    ASStackLayoutSpec(direction: .horizontal, spacing: 3, justifyContent: .start, alignItems: .center, children: [
+                        self.scoreIconNode,
+                        self.scoreLabel,
+                        ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0), child: self.upvoteRatioIconNode),
+                        self.upvoteRatioLabel,
+                        ASInsetLayoutSpec(insets: UIEdgeInsets(top: 0, left: 7, bottom: 0, right: 0), child: self.timeAgoIconNode),
+                        self.timeAgoLabel
+                    ]),
+                    self.authorInfoLabel
+                ]
+            )
         )
     }
     
