@@ -11,6 +11,7 @@ import reddift
 
 class SelfLinkDetailHeader: ASCellNode {
     
+    let link: Link
     let InterItemVerticalSpacing: CGFloat = 12.0
     let titleLabel = ASTextNode()
     
@@ -27,10 +28,12 @@ class SelfLinkDetailHeader: ASCellNode {
     
     
     init(link: Link) {
+        self.link = link
         super.init()
+        
         self.automaticallyManagesSubnodes = true
         
-        self.imageNode.backgroundColor = UIColor.lightGray
+        self.imageNode.backgroundColor = UIColor.black
         self.imageNode.contentMode = .scaleAspectFit
         
         self.scoreIconNode.image = UIImage(named: "score")

@@ -10,10 +10,11 @@ import UIKit
 import AsyncDisplayKit
 import reddift
 
-class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, ASTableDataSource {
+class LinkListViewController: ASViewController<ASDisplayNode>, UIViewControllerPreviewingDelegate, ASTableDelegate, ASTableDataSource {
     
     var subreddit: Subreddit
     var listingFetcher: ListingFetcher<Link>
+    var previewingContext: UIViewControllerPreviewing?
     
     var tableNode: ASTableNode {
         get { return self.node as! ASTableNode }
@@ -40,6 +41,18 @@ class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, 
         
         if let selectedIndexPath = self.tableNode.indexPathForSelectedRow {
             self.tableNode.deselectRow(at: selectedIndexPath, animated: false)
+        }
+    }
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        
+        if let previewingContext = self.previewingContext {
+            self.unregisterForPreviewing(withContext: previewingContext)
+        }
+        
+        if self.traitCollection.forceTouchCapability == .available {
+            self.previewingContext = self.registerForPreviewing(with: self, sourceView: self.view)
         }
     }
     
@@ -86,10 +99,23 @@ class LinkListViewController: ASViewController<ASDisplayNode>, ASTableDelegate, 
         }
     }
     
-    
-    
     func shouldBatchFetch(for tableNode: ASTableNode) -> Bool {
         return (self.listingFetcher.moreAvailable && !self.listingFetcher.fetching)
     }
+    
+    // MARK: Previewing
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        guard let indexPath = self.tableNode.indexPathForRow(at: location) else {
+            return nil;
+        }
+        
+        previewingContext.sourceRect = self.tableNode.rectForRow(at: indexPath)
+        return LinkDetailViewController(link: self.listingFetcher.things[indexPath.row])
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        self.navigationController?.show(viewControllerToCommit, sender: self)
+    }
+    
 }
 

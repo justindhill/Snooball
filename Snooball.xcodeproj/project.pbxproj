@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		8D63E5F8FF9C7D1B6137233F /* Pods_Snooball.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F42B0A34DC17C9D12D16FD8A /* Pods_Snooball.framework */; };
+		D01881C61E8848570010D00E /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01881C51E8848570010D00E /* CommentCell.swift */; };
+		D01881C91E884E920010D00E /* UIFont+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01881C81E884E920010D00E /* UIFont+Utils.swift */; };
 		D04B63EB1E75D5FE0019AEFE /* ListingFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = D04B63EA1E75D5FE0019AEFE /* ListingFetcher.swift */; };
+		D0514E411E7DD4470069A172 /* CommentTreeTableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0514E401E7DD4470069A172 /* CommentTreeTableAdapter.swift */; };
 		D06ACD4B1E779D9B00DA9D43 /* LinkCellNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD491E779D9B00DA9D43 /* LinkCellNode.swift */; };
 		D06ACD4C1E779D9B00DA9D43 /* LinkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD4A1E779D9B00DA9D43 /* LinkListViewController.swift */; };
 		D06ACD4F1E77A37A00DA9D43 /* LinkDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD4E1E77A37A00DA9D43 /* LinkDetailViewController.swift */; };
@@ -24,7 +27,10 @@
 /* Begin PBXFileReference section */
 		1C56283D0640CBFF5315FA58 /* Pods-Snooball.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snooball.release.xcconfig"; path = "Pods/Target Support Files/Pods-Snooball/Pods-Snooball.release.xcconfig"; sourceTree = "<group>"; };
 		C70C7C69D1C20B87023E3F84 /* Pods-Snooball.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Snooball.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Snooball/Pods-Snooball.debug.xcconfig"; sourceTree = "<group>"; };
+		D01881C51E8848570010D00E /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		D01881C81E884E920010D00E /* UIFont+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIFont+Utils.swift"; sourceTree = "<group>"; };
 		D04B63EA1E75D5FE0019AEFE /* ListingFetcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingFetcher.swift; sourceTree = "<group>"; };
+		D0514E401E7DD4470069A172 /* CommentTreeTableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentTreeTableAdapter.swift; sourceTree = "<group>"; };
 		D06ACD491E779D9B00DA9D43 /* LinkCellNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkCellNode.swift; sourceTree = "<group>"; };
 		D06ACD4A1E779D9B00DA9D43 /* LinkListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkListViewController.swift; sourceTree = "<group>"; };
 		D06ACD4E1E77A37A00DA9D43 /* LinkDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkDetailViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +66,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		D01881C71E884E7F0010D00E /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D01881C81E884E920010D00E /* UIFont+Utils.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		D06ACD481E779D9B00DA9D43 /* Link List */ = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +88,8 @@
 			children = (
 				D06ACD4E1E77A37A00DA9D43 /* LinkDetailViewController.swift */,
 				D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */,
+				D0514E401E7DD4470069A172 /* CommentTreeTableAdapter.swift */,
+				D01881C51E8848570010D00E /* CommentCell.swift */,
 			);
 			path = "Link Detail View";
 			sourceTree = "<group>";
@@ -109,6 +125,7 @@
 			children = (
 				D0ECB8461E62292C003D4B52 /* AppDelegate.swift */,
 				D04B63EA1E75D5FE0019AEFE /* ListingFetcher.swift */,
+				D01881C71E884E7F0010D00E /* Utilities */,
 				D06ACD481E779D9B00DA9D43 /* Link List */,
 				D06ACD4D1E77A35E00DA9D43 /* Link Detail View */,
 				D06ACD561E77A79A00DA9D43 /* Model */,
@@ -265,9 +282,12 @@
 			files = (
 				D06ACD4C1E779D9B00DA9D43 /* LinkListViewController.swift in Sources */,
 				D06ACD581E77A7A900DA9D43 /* LinkType.swift in Sources */,
+				D0514E411E7DD4470069A172 /* CommentTreeTableAdapter.swift in Sources */,
 				D06ACD551E77A63B00DA9D43 /* SelfLinkDetailHeader.swift in Sources */,
 				D0ECB8471E62292C003D4B52 /* AppDelegate.swift in Sources */,
+				D01881C61E8848570010D00E /* CommentCell.swift in Sources */,
 				D06ACD4B1E779D9B00DA9D43 /* LinkCellNode.swift in Sources */,
+				D01881C91E884E920010D00E /* UIFont+Utils.swift in Sources */,
 				D04B63EB1E75D5FE0019AEFE /* ListingFetcher.swift in Sources */,
 				D06ACD4F1E77A37A00DA9D43 /* LinkDetailViewController.swift in Sources */,
 				D06ACD511E77A4DD00DA9D43 /* Constants.swift in Sources */,

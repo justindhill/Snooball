@@ -3,5 +3,6 @@ target 'Snooball' do
   pod 'AsyncDisplayKit'
   pod 'reddift'
   pod 'OpenGraph'
+  pod 'TSMarkdownParser'
   pod 'Reveal-SDK'
 end

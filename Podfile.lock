@@ -23,12 +23,14 @@ PODS:
     - reddift/MiniKeychain (= 2.0.1)
   - reddift/MiniKeychain (2.0.1)
   - Reveal-SDK (7)
+  - TSMarkdownParser (2.1.3)
 
 DEPENDENCIES:
   - AsyncDisplayKit
   - OpenGraph
   - reddift
   - Reveal-SDK
+  - TSMarkdownParser
 
 SPEC CHECKSUMS:
   AsyncDisplayKit: 5c22daa1499c530fcc3e5589ddb201bf1176842b
@@ -37,7 +39,8 @@ SPEC CHECKSUMS:
   PINRemoteImage: ff63baf185088530db6cfa41cb665e2b5126b5c3
   reddift: c6dc41a76657a9ca5c07f55a8e8ad6440f3635a9
   Reveal-SDK: 564657bc66c93d2718b1c0121cdebe99d354ddab
+  TSMarkdownParser: 114779f14d46e7fc6d9880d4797e5abcc01f92c3
 
-PODFILE CHECKSUM: f7e6518538970c05981763e799342e78226dbebf
+PODFILE CHECKSUM: f264023cbc93d1d559bc686d9fdbd68ce20beb32
 
 COCOAPODS: 1.2.0
