@@ -36,10 +36,14 @@ class CommentThreadTableAdapter {
         self.flattenedComments = CommentThreadTableAdapter.flattenedComments(with: comments)
     }
     
-    private class func flattenedComments(with comments: [Thing], hiddenPaths: Set<IndexPath>? = nil) -> [CommentWrapper] {
+    private class func flattenedComments(with comments: [Thing], hiddenPaths: Set<IndexPath>? = nil, depth: Int = 0) -> [CommentWrapper] {
         var flattened = [CommentWrapper]()
         for (index, comment) in comments.enumerated() {
-            flattened.append(CommentWrapper(comment: comment, indexPath: IndexPath(indexes: [index])))
+            flattened.append(CommentWrapper(comment: comment, indexPath: IndexPath(indexes: [index]), depth: depth))
+            
+            if let comment = comment as? Comment {
+                flattened.append(contentsOf: flattenedComments(with: comment.replies.children, hiddenPaths: hiddenPaths, depth: depth + 1))
+            }
         }
         
         return flattened

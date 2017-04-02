@@ -9,7 +9,7 @@
 import UIKit
 
 struct Constants {
-    static let horizontalPageMargin: CGFloat = 16.0
+    static let horizontalPageMargin: CGFloat = 12.0
     static let verticalPageMargin: CGFloat = 16.0
     
     static let titleTextLineHeightMultiplier: CGFloat = 1.2

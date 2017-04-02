@@ -24,7 +24,7 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
         self.applyLink(link: link)
         
         do {
-            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 3, limit: 120, context: nil, completion: { [weak self] (result) in
+            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 6, limit: 120, context: nil, completion: { [weak self] (result) in
                 if let comments = result.value?.1.children {
                     let commentAdapter = CommentThreadTableAdapter(comments: comments)
                     self?.commentTableAdapter = commentAdapter
@@ -104,7 +104,7 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
             let comment = adapter.commentAt(index: indexPath.row)
             
             if let rawComment = comment.comment as? Comment {
-                return CommentCell(comment: rawComment)
+                return CommentCell(comment: rawComment, depth: comment.depth)
             } else if let more = comment.comment as? More {
                 let node = ASTextCellNode()
                 node.text = "\(more.count) more comments"
