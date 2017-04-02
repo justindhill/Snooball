@@ -13,4 +13,6 @@ struct Constants {
     static let verticalPageMargin: CGFloat = 16.0
     
     static let titleTextLineHeightMultiplier: CGFloat = 1.2
+    
+    static let separatorColor = UIColor.lightGray
 }

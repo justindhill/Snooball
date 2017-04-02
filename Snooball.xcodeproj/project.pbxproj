@@ -18,6 +18,7 @@
 		D06ACD511E77A4DD00DA9D43 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD501E77A4DD00DA9D43 /* Constants.swift */; };
 		D06ACD551E77A63B00DA9D43 /* SelfLinkDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */; };
 		D06ACD581E77A7A900DA9D43 /* LinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD571E77A7A900DA9D43 /* LinkType.swift */; };
+		D0963F941E9082F7003305B0 /* CommentCellContentWrapperNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963F931E9082F7003305B0 /* CommentCellContentWrapperNode.swift */; };
 		D0E370F01E779CE900032FBA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E370EF1E779CE900032FBA /* Launch Screen.storyboard */; };
 		D0ECB8471E62292C003D4B52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ECB8461E62292C003D4B52 /* AppDelegate.swift */; };
 		D0ECB84E1E62292C003D4B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0ECB84D1E62292C003D4B52 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		D06ACD501E77A4DD00DA9D43 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfLinkDetailHeader.swift; sourceTree = "<group>"; };
 		D06ACD571E77A7A900DA9D43 /* LinkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
+		D0963F931E9082F7003305B0 /* CommentCellContentWrapperNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellContentWrapperNode.swift; sourceTree = "<group>"; };
 		D0E370EF1E779CE900032FBA /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D0ECB8431E62292C003D4B52 /* Snooball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snooball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ECB8461E62292C003D4B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */,
 				D0514E401E7DD4470069A172 /* CommentTreeTableAdapter.swift */,
 				D01881C51E8848570010D00E /* CommentCell.swift */,
+				D0963F931E9082F7003305B0 /* CommentCellContentWrapperNode.swift */,
 			);
 			path = "Link Detail View";
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				D06ACD4C1E779D9B00DA9D43 /* LinkListViewController.swift in Sources */,
 				D06ACD581E77A7A900DA9D43 /* LinkType.swift in Sources */,
 				D0514E411E7DD4470069A172 /* CommentTreeTableAdapter.swift in Sources */,
+				D0963F941E9082F7003305B0 /* CommentCellContentWrapperNode.swift in Sources */,
 				D06ACD551E77A63B00DA9D43 /* SelfLinkDetailHeader.swift in Sources */,
 				D0ECB8471E62292C003D4B52 /* AppDelegate.swift in Sources */,
 				D01881C61E8848570010D00E /* CommentCell.swift in Sources */,

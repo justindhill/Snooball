@@ -45,7 +45,6 @@ playground.xcworkspace
 # CocoaPods
 #
 Pods/
-*.xcworkspace
 
 # Carthage
 #

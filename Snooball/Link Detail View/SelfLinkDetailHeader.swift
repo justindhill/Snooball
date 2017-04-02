@@ -24,6 +24,8 @@ class SelfLinkDetailHeader: ASCellNode {
     let authorInfoLabel = ASTextNode()
     let selfTextLabel = ASTextNode()
     
+    let separatorNode = ASDisplayNode()
+    
     let imageNode = ASNetworkImageNode()
     
     
@@ -39,6 +41,9 @@ class SelfLinkDetailHeader: ASCellNode {
         self.scoreIconNode.image = UIImage(named: "score")
         self.upvoteRatioIconNode.image = UIImage(named: "score")
         self.timeAgoIconNode.image = UIImage(named: "clock")
+        
+        self.separatorNode.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionAuto, height: ASDimensionMake(0.5))
+        self.separatorNode.backgroundColor = Constants.separatorColor
         
         self.applyLink(link)
     }
@@ -74,6 +79,7 @@ class SelfLinkDetailHeader: ASCellNode {
         
         mainStackChildren.append(photoContainer)
         mainStackChildren.append(postInfoStack)
+        mainStackChildren.append(self.separatorNode)
         
         return ASStackLayoutSpec(direction: .vertical, spacing: 0, justifyContent: .start, alignItems: .start, children: mainStackChildren)
     }
