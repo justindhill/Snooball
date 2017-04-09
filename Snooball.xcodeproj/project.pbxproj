@@ -19,6 +19,8 @@
 		D06ACD551E77A63B00DA9D43 /* SelfLinkDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */; };
 		D06ACD581E77A7A900DA9D43 /* LinkType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D06ACD571E77A7A900DA9D43 /* LinkType.swift */; };
 		D0963F941E9082F7003305B0 /* CommentCellContentWrapperNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0963F931E9082F7003305B0 /* CommentCellContentWrapperNode.swift */; };
+		D0A56E0C1E9ACC9B004CF4A8 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A56E0B1E9ACC9B004CF4A8 /* UIColor+Extensions.swift */; };
+		D0A56E0E1E9AD32F004CF4A8 /* UIImage+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A56E0D1E9AD32F004CF4A8 /* UIImage+Extensions.swift */; };
 		D0E370F01E779CE900032FBA /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E370EF1E779CE900032FBA /* Launch Screen.storyboard */; };
 		D0ECB8471E62292C003D4B52 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0ECB8461E62292C003D4B52 /* AppDelegate.swift */; };
 		D0ECB84E1E62292C003D4B52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0ECB84D1E62292C003D4B52 /* Assets.xcassets */; };
@@ -39,6 +41,8 @@
 		D06ACD541E77A63B00DA9D43 /* SelfLinkDetailHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfLinkDetailHeader.swift; sourceTree = "<group>"; };
 		D06ACD571E77A7A900DA9D43 /* LinkType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkType.swift; sourceTree = "<group>"; };
 		D0963F931E9082F7003305B0 /* CommentCellContentWrapperNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCellContentWrapperNode.swift; sourceTree = "<group>"; };
+		D0A56E0B1E9ACC9B004CF4A8 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		D0A56E0D1E9AD32F004CF4A8 /* UIImage+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Extensions.swift"; sourceTree = "<group>"; };
 		D0E370EF1E779CE900032FBA /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		D0ECB8431E62292C003D4B52 /* Snooball.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Snooball.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0ECB8461E62292C003D4B52 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +76,8 @@
 			isa = PBXGroup;
 			children = (
 				D01881C81E884E920010D00E /* UIFont+Utils.swift */,
+				D0A56E0B1E9ACC9B004CF4A8 /* UIColor+Extensions.swift */,
+				D0A56E0D1E9AD32F004CF4A8 /* UIImage+Extensions.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -286,6 +292,8 @@
 				D06ACD4C1E779D9B00DA9D43 /* LinkListViewController.swift in Sources */,
 				D06ACD581E77A7A900DA9D43 /* LinkType.swift in Sources */,
 				D0514E411E7DD4470069A172 /* CommentTreeTableAdapter.swift in Sources */,
+				D0A56E0E1E9AD32F004CF4A8 /* UIImage+Extensions.swift in Sources */,
+				D0A56E0C1E9ACC9B004CF4A8 /* UIColor+Extensions.swift in Sources */,
 				D0963F941E9082F7003305B0 /* CommentCellContentWrapperNode.swift in Sources */,
 				D06ACD551E77A63B00DA9D43 /* SelfLinkDetailHeader.swift in Sources */,
 				D0ECB8471E62292C003D4B52 /* AppDelegate.swift in Sources */,

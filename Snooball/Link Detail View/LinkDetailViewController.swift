@@ -24,13 +24,14 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
         self.applyLink(link: link)
         
         do {
-            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 6, limit: 120, context: nil, completion: { [weak self] (result) in
+            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 8, limit: 120, context: nil, completion: { [weak self] (result) in
                 if let comments = result.value?.1.children {
                     let commentAdapter = CommentThreadTableAdapter(comments: comments)
                     self?.commentTableAdapter = commentAdapter
                     
                     DispatchQueue.main.async {
-                        self?.insertCommentsFrom(adapter: commentAdapter)
+                        self?.tableNode.reloadData()
+//                        self?.insertCommentsFrom(adapter: commentAdapter)
                     }
                 }
             })
@@ -59,29 +60,31 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
         self.title = "\(link.numComments) comments"
     }
     
-    func insertCommentsFrom(adapter: CommentThreadTableAdapter) {
-        let indices = 0..<adapter.numberOfComments
-        let indexPaths = indices.map { (index) -> IndexPath in
-            return IndexPath(row: index, section: SECTION_COMMENTS)
-        }
-        
-        self.tableNode.performBatch(animated: false, updates: { 
-            self.tableNode.insertRows(at: indexPaths, with: .fade)
-        }, completion: nil)
+    private func commentIndexPathWith(tableIndexPath indexPath: IndexPath) -> IndexPath {
+        return IndexPath(row: indexPath.row, section: indexPath.section - 1)
     }
+//    
+//    func insertCommentsFrom(adapter: CommentThreadTableAdapter) {
+//        let indices = 0..<adapter.numberOfComments
+//        let indexPaths = indices.map { (index) -> IndexPath in
+//            return IndexPath(row: index, section: SECTION_COMMENTS)
+//        }
+//        
+//        self.tableNode.performBatch(animated: false, updates: { 
+//            self.tableNode.insertRows(at: indexPaths, with: .fade)
+//        }, completion: nil)
+//    }
     
     func numberOfSections(in tableNode: ASTableNode) -> Int {
-        return 2
+        return 1 + (self.commentTableAdapter?.numberOfRootComments ?? 0)
     }
     
     func tableNode(_ tableNode: ASTableNode, numberOfRowsInSection section: Int) -> Int {
         if section == SECTION_HEADER {
             return 1
-        } else if section == SECTION_COMMENTS {
-            return self.commentTableAdapter?.numberOfComments ?? 0
+        } else {
+            return self.commentTableAdapter?.numberOfChildrenForRootCommentAtIndex(index: section - 1) ?? 0
         }
-        
-        return 0
     }
     
     func tableNode(_ tableNode: ASTableNode, nodeForRowAt indexPath: IndexPath) -> ASCellNode {
@@ -96,19 +99,22 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
             default:
                 fatalError("Link type \(linkType) is not supported")
             }
-        } else if indexPath.section == SECTION_COMMENTS {
+        } else {
             guard let adapter = self.commentTableAdapter else {
                 fatalError("Somehow got a request for a comment node even though we have no comments...")
             }
             
-            let comment = adapter.commentAt(index: indexPath.row)
+            let comment = adapter.commentAt(indexPath: commentIndexPathWith(tableIndexPath: indexPath))
             
             if let rawComment = comment.comment as? Comment {
-                return CommentCell(comment: rawComment, depth: comment.depth)
+                let isCollapsed = self.commentTableAdapter?.isCommentHidden(rawComment) ?? false
+                let commentContent = CommentCellContentWrapperNode(comment: rawComment, collapsed: isCollapsed)
+                return CommentCell(contentNode: commentContent, depth: comment.depth)
+                
             } else if let more = comment.comment as? More {
-                let node = ASTextCellNode()
-                node.text = "\(more.count) more comments"
-                return node
+                let textNode = ASTextCellNode()
+                textNode.text = "\(more.count) more comments"
+                return CommentCell(contentNode: textNode, depth: comment.depth)
             }
         }
         
@@ -116,6 +122,18 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
     }
     
     func tableNode(_ tableNode: ASTableNode, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        if indexPath.section == SECTION_HEADER {
+            return false
+        }
+        
+        return true
+    }
+    
+    func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
+        tableNode.deselectRow(at: indexPath, animated: true)
+        
+        self.commentTableAdapter?.toggleHidingForCommentAt(indexPath: commentIndexPathWith(tableIndexPath: indexPath))
+        
+        tableNode.reloadSections([indexPath.section], with: .fade)
     }
 }
