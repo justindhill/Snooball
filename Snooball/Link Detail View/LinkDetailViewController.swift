@@ -9,6 +9,7 @@
 import AsyncDisplayKit
 import reddift
 import TSMarkdownParser
+import DRPLoadingSpinner
 
 fileprivate let SECTION_HEADER = 0
 fileprivate let SECTION_COMMENTS = 1
@@ -18,26 +19,14 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
     let link: Link
     var commentTableAdapter: CommentThreadTableAdapter? = nil
     
+    let refreshControl = DRPRefreshControl()
+    
     init(link: Link) {
         self.link = link
         super.init(node: ASTableNode())
         self.applyLink(link: link)
         
-        do {
-            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 8, limit: 120, context: nil, completion: { [weak self] (result) in
-                if let comments = result.value?.1.children {
-                    let commentAdapter = CommentThreadTableAdapter(comments: comments)
-                    self?.commentTableAdapter = commentAdapter
-                    
-                    DispatchQueue.main.async {
-                        self?.tableNode.reloadData()
-//                        self?.insertCommentsFrom(adapter: commentAdapter)
-                    }
-                }
-            })
-        } catch {
-            // TODO: empty/error state
-        }
+        self.loadThread()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -47,6 +36,26 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
     var tableNode: ASTableNode {
         get { return self.node as! ASTableNode }
     }
+    
+    func loadThread() {
+        do {
+            try AppDelegate.shared.session?.getArticles(link, sort: .top, comments: nil, depth: 8, limit: 120, context: nil, completion: { [weak self] (result) in
+                if let comments = result.value?.1.children {
+                    let commentAdapter = CommentThreadTableAdapter(comments: comments)
+                    self?.commentTableAdapter = commentAdapter
+                    
+                    DispatchQueue.main.async {
+                        self?.tableNode.reloadData(completion: { 
+                            self?.refreshControl.endRefreshing()
+                        })
+                    }
+                }
+            })
+        } catch {
+            self.refreshControl.endRefreshing()
+            // TODO: empty/error state
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +63,13 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
         self.tableNode.delegate = self
         self.tableNode.dataSource = self
         self.tableNode.view.separatorStyle = .none
+        
+        self.refreshControl.loadingSpinner.drawCycleDuration = 0.65;
+        self.refreshControl.loadingSpinner.rotationCycleDuration = 1.15;
+        self.refreshControl.loadingSpinner.drawTimingFunction = DRPLoadingSpinnerTimingFunction.sharpEaseInOut()
+        self.refreshControl.add(to: self.tableNode) { [weak self] in
+            self?.loadThread()
+        }
     }
     
     func applyLink(link: Link) {

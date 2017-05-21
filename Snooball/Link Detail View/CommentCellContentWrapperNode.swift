@@ -39,7 +39,21 @@ class CommentCellContentWrapperNode: ASDisplayNode {
     }
     
     func apply(comment: Comment) {
-        let usernameAttributes = [NSFontAttributeName: UIFont.snb_preferredFont(forTextStyle: .caption1, weight: UIFontWeightSemibold)]
+        var usernameColor: UIColor = .black
+        
+        if comment.distinguished == .moderator {
+            usernameColor = .green
+        } else if comment.distinguished == .admin {
+            usernameColor = .orange
+        } else if comment.distinguished == .special {
+            usernameColor = .purple
+        }
+        
+        let usernameAttributes: [String: Any] = [
+            NSFontAttributeName: UIFont.snb_preferredFont(forTextStyle: .caption1, weight: UIFontWeightSemibold),
+            NSForegroundColorAttributeName: usernameColor
+        ]
+        
         self.usernameLabel.attributedText = NSAttributedString(string: comment.author, attributes: usernameAttributes)
         
         let upvoteCountAttributes = [

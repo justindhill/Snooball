@@ -1,46 +1,68 @@
 PODS:
-  - AsyncDisplayKit (2.0.2):
-    - AsyncDisplayKit/PINRemoteImage (= 2.0.2)
-  - AsyncDisplayKit/Core (2.0.2)
-  - AsyncDisplayKit/PINRemoteImage (2.0.2):
-    - AsyncDisplayKit/Core
-    - PINRemoteImage/iOS (= 3.0.0-beta.7)
-    - PINRemoteImage/PINCache
+  - DRPLoadingSpinner/core (1.2.0)
+  - DRPLoadingSpinner/Texture (1.2.0):
+    - DRPLoadingSpinner/core
+    - Texture
   - OpenGraph (1.0.1)
-  - PINCache (3.0.1-beta.2):
-    - PINCache/Arc-exception-safe (= 3.0.1-beta.2)
-    - PINCache/Core (= 3.0.1-beta.2)
-  - PINCache/Arc-exception-safe (3.0.1-beta.2):
+  - PINCache (3.0.1-beta.4):
+    - PINCache/Arc-exception-safe (= 3.0.1-beta.4)
+    - PINCache/Core (= 3.0.1-beta.4)
+  - PINCache/Arc-exception-safe (3.0.1-beta.4):
     - PINCache/Core
-  - PINCache/Core (3.0.1-beta.2)
-  - PINRemoteImage/Core (3.0.0-beta.7)
-  - PINRemoteImage/iOS (3.0.0-beta.7):
+  - PINCache/Core (3.0.1-beta.4):
+    - PINOperation (= 1.0.3)
+  - PINOperation (1.0.3)
+  - PINRemoteImage/Core (3.0.0-beta.9):
+    - PINOperation
+  - PINRemoteImage/iOS (3.0.0-beta.9):
     - PINRemoteImage/Core
-  - PINRemoteImage/PINCache (3.0.0-beta.7):
-    - PINCache (= 3.0.1-beta.2)
+  - PINRemoteImage/PINCache (3.0.0-beta.9):
+    - PINCache (= 3.0.1-beta.4)
     - PINRemoteImage/Core
   - reddift (2.0.1):
     - reddift/MiniKeychain (= 2.0.1)
   - reddift/MiniKeychain (2.0.1)
-  - Reveal-SDK (7)
+  - Reveal-SDK (8)
+  - Texture (2.3.2):
+    - Texture/PINRemoteImage (= 2.3.2)
+  - Texture/Core (2.3.2)
+  - Texture/PINRemoteImage (2.3.2):
+    - PINRemoteImage/iOS (= 3.0.0-beta.9)
+    - PINRemoteImage/PINCache
+    - Texture/Core
   - TSMarkdownParser (2.1.3)
 
 DEPENDENCIES:
-  - AsyncDisplayKit
+  - DRPLoadingSpinner/Texture
   - OpenGraph
-  - reddift
+  - reddift (from `https://github.com/justindhill/reddift`, branch `master`)
   - Reveal-SDK
+  - Texture
   - TSMarkdownParser
 
+EXTERNAL SOURCES:
+  reddift:
+    :branch: master
+    :git: https://github.com/justindhill/reddift
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  reddift:
+    :commit: e98696c852ffa2454b73934868ba778973f2a417
+    :git: https://github.com/justindhill/reddift
+    :submodules: true
+
 SPEC CHECKSUMS:
-  AsyncDisplayKit: 5c22daa1499c530fcc3e5589ddb201bf1176842b
+  DRPLoadingSpinner: fa79dc418f66765c51dd81f6c2285d1f821481e3
   OpenGraph: ab741a1468a28a3cca10a03602034ed1c74b84d3
-  PINCache: 6d273a6e0754bd26e3f12a38a90dde73cc6a42b2
-  PINRemoteImage: ff63baf185088530db6cfa41cb665e2b5126b5c3
-  reddift: c6dc41a76657a9ca5c07f55a8e8ad6440f3635a9
-  Reveal-SDK: 564657bc66c93d2718b1c0121cdebe99d354ddab
+  PINCache: a89c8f609232afac77128557bd12c861844423d7
+  PINOperation: ac23db44796d4a564ecf9b5ea7163510f579b71d
+  PINRemoteImage: e4e02e15a6f96cedbcef2abf1c9c1228dc9897d7
+  reddift: 233f9ec426f26f76b8338569f9080cbc56ed0d62
+  Reveal-SDK: 43be4e662864e937960d0d04d005135e29c4e53b
+  Texture: 18664254419f35de27af76399b3b265cbad5740a
   TSMarkdownParser: 114779f14d46e7fc6d9880d4797e5abcc01f92c3
 
-PODFILE CHECKSUM: f264023cbc93d1d559bc686d9fdbd68ce20beb32
+PODFILE CHECKSUM: d3724b870f742c7e803231c20bca5825939fb39a
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

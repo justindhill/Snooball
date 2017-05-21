@@ -69,13 +69,15 @@ class CommentCell: ASCellNode {
         return insetSpec
     }
     
-    override func __setHighlighted(fromUIKit highlighted: Bool) {
-        if highlighted {
-            self.unhighlightedBackgroundColor = self.contentNode.backgroundColor
-            self.contentNode.backgroundColor = self.contentNode.backgroundColor?.darkened(byPercent: 0.1)
-        } else if let unhighlightedBackgroundColor = self.unhighlightedBackgroundColor {
-            self.unhighlightedBackgroundColor = nil
-            self.contentNode.backgroundColor = unhighlightedBackgroundColor
+    override var isHighlighted: Bool {
+        didSet(value) {
+            if value {
+                self.unhighlightedBackgroundColor = self.contentNode.backgroundColor
+                self.contentNode.backgroundColor = self.contentNode.backgroundColor?.darkened(byPercent: 0.1)
+            } else if let unhighlightedBackgroundColor = self.unhighlightedBackgroundColor {
+                self.unhighlightedBackgroundColor = nil
+                self.contentNode.backgroundColor = unhighlightedBackgroundColor
+            }
         }
     }
 }
