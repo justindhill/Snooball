@@ -26,7 +26,7 @@ class SelfLinkDetailHeader: ASCellNode {
     
     let separatorNode = ASDisplayNode()
     
-    let imageNode = ASNetworkImageNode()
+    let contentNode = ASVideoNode()
     
     
     init(link: Link) {
@@ -35,8 +35,8 @@ class SelfLinkDetailHeader: ASCellNode {
         
         self.automaticallyManagesSubnodes = true
         
-        self.imageNode.backgroundColor = UIColor.black
-        self.imageNode.contentMode = .scaleAspectFit
+        self.contentNode.backgroundColor = UIColor.black
+        self.contentNode.contentMode = .scaleAspectFit
         
         self.scoreIconNode.image = UIImage(named: "score")
         self.upvoteRatioIconNode.image = UIImage(named: "score")
@@ -44,6 +44,10 @@ class SelfLinkDetailHeader: ASCellNode {
         
         self.separatorNode.style.preferredLayoutSize = ASLayoutSize(width: ASDimensionAuto, height: ASDimensionMake(0.5))
         self.separatorNode.backgroundColor = Constants.separatorColor
+        
+        self.contentNode.shouldAutoplay = true
+        self.contentNode.shouldAutorepeat = true
+        self.contentNode.muted = true
         
         self.applyLink(link)
     }
@@ -56,15 +60,27 @@ class SelfLinkDetailHeader: ASCellNode {
         self.selfTextLabel.attributedText = NSAttributedString(string: String(link.selftext), attributes: self.selfTextFontAttributes())
         self.authorInfoLabel.attributedText = NSAttributedString(string: "by \(link.author) in \(link.subreddit)")
         
-        if let url = URL(string: link.thumbnail) {
-            self.imageNode.url = url
+        if let thumbnailUrl = URL(string: link.thumbnail) {
+            self.contentNode.url = thumbnailUrl
+        }
+        
+        if let linkUrl = URL(string: link.url) {
+            if linkUrl.pathExtension == "gifv" {
+                let replacementUrlString = linkUrl.absoluteString.replacingOccurrences(of: "gifv", with: "mp4")
+                if let replacementUrl = URL(string: replacementUrlString) {
+                    let asset = AVAsset(url: replacementUrl)
+                    self.contentNode.asset = asset
+                }
+            } else {
+                self.contentNode.url = linkUrl
+            }
         }
     }
     
     override func layoutSpecThatFits(_ constrainedSize: ASSizeRange) -> ASLayoutSpec {
         let headerMargins = UIEdgeInsetsMake(Constants.verticalPageMargin, Constants.horizontalPageMargin, 0, Constants.horizontalPageMargin)
         
-        let photoContainer = ASRatioLayoutSpec(ratio: (9/16), child: self.imageNode)
+        let photoContainer = ASRatioLayoutSpec(ratio: (9/16), child: self.contentNode)
         photoContainer.style.preferredLayoutSize = ASLayoutSizeMake(ASDimensionMake("100%"), ASDimensionAuto)
         
         let postInfoStack = ASInsetLayoutSpec(insets: headerMargins, child:

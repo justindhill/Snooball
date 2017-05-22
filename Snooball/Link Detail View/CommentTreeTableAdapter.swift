@@ -1,4 +1,4 @@
-//
+                          //
 //  CommentThreadTableAdapter.swift
 //  Snooball
 //
