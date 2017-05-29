@@ -19,7 +19,7 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
     let link: Link
     var commentTableAdapter: CommentThreadTableAdapter? = nil
     
-    let refreshControl = DRPRefreshControl()
+    let refreshControl = DRPRefreshControl.customizedRefreshControl()
     
     init(link: Link) {
         self.link = link
@@ -64,9 +64,6 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
         self.tableNode.dataSource = self
         self.tableNode.view.separatorStyle = .none
         
-        self.refreshControl.loadingSpinner.drawCycleDuration = 0.65;
-        self.refreshControl.loadingSpinner.rotationCycleDuration = 1.15;
-        self.refreshControl.loadingSpinner.drawTimingFunction = DRPLoadingSpinnerTimingFunction.sharpEaseInOut()
         self.refreshControl.add(to: self.tableNode) { [weak self] in
             self?.loadThread()
         }

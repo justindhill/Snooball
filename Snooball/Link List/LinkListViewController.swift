@@ -9,12 +9,15 @@
 import UIKit
 import AsyncDisplayKit
 import reddift
+import DRPLoadingSpinner
 
 class LinkListViewController: ASViewController<ASDisplayNode>, UIViewControllerPreviewingDelegate, ASTableDelegate, ASTableDataSource {
     
     var subreddit: Subreddit
     var listingFetcher: ListingFetcher<Link>
     var previewingContext: UIViewControllerPreviewing?
+    
+    let refreshControl = DRPRefreshControl.customizedRefreshControl()
     
     var tableNode: ASTableNode {
         get { return self.node as! ASTableNode }
@@ -36,11 +39,29 @@ class LinkListViewController: ASViewController<ASDisplayNode>, UIViewControllerP
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.refreshControl.add(to: self.tableNode) { [weak self] in
+            self?.reloadThread()
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         if let selectedIndexPath = self.tableNode.indexPathForSelectedRow {
             self.tableNode.deselectRow(at: selectedIndexPath, animated: false)
+        }
+    }
+    
+    private func reloadThread() {
+        let fetcher = ListingFetcher<Link>(subreddit: self.listingFetcher.subreddit, sortOrder: self.listingFetcher.sortOrder)
+        fetcher.fetchMore { [weak self] (error, count) in
+            self?.listingFetcher = fetcher
+            self?.tableNode.reloadData(completion: { 
+                self?.refreshControl.endRefreshing()
+            })
         }
     }
     
