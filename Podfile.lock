@@ -35,7 +35,7 @@ PODS:
 DEPENDENCIES:
   - DRPLoadingSpinner/Texture
   - OpenGraph
-  - reddift (from `https://github.com/justindhill/reddift`, branch `master`)
+  - reddift (from `https://github.com/sonsongithub/reddift`, branch `master`)
   - Reveal-SDK
   - Texture
   - TSMarkdownParser
@@ -43,13 +43,13 @@ DEPENDENCIES:
 EXTERNAL SOURCES:
   reddift:
     :branch: master
-    :git: https://github.com/justindhill/reddift
+    :git: https://github.com/sonsongithub/reddift
     :submodules: true
 
 CHECKOUT OPTIONS:
   reddift:
-    :commit: e98696c852ffa2454b73934868ba778973f2a417
-    :git: https://github.com/justindhill/reddift
+    :commit: e1deeeb8814b80fc28150dd89d4852a06870d294
+    :git: https://github.com/sonsongithub/reddift
     :submodules: true
 
 SPEC CHECKSUMS:
@@ -63,6 +63,6 @@ SPEC CHECKSUMS:
   Texture: 18664254419f35de27af76399b3b265cbad5740a
   TSMarkdownParser: 114779f14d46e7fc6d9880d4797e5abcc01f92c3
 
-PODFILE CHECKSUM: d3724b870f742c7e803231c20bca5825939fb39a
+PODFILE CHECKSUM: 0b0fb922af3c3c8d188571ae636a2eafbee1f269
 
 COCOAPODS: 1.2.1

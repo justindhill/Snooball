@@ -148,8 +148,22 @@ class LinkDetailViewController: ASViewController<ASDisplayNode>, ASTableDelegate
     func tableNode(_ tableNode: ASTableNode, didSelectRowAt indexPath: IndexPath) {
         tableNode.deselectRow(at: indexPath, animated: true)
         
-        self.commentTableAdapter?.toggleHidingForCommentAt(indexPath: commentIndexPathWith(tableIndexPath: indexPath))
+        guard let changesets = self.commentTableAdapter?.toggleHidingForCommentAt(indexPath: commentIndexPathWith(tableIndexPath: indexPath)) else {
+            return
+        }
         
-        tableNode.reloadSections([indexPath.section], with: .fade)
+        tableNode.performBatch(animated: true, updates: {
+            for changeset in changesets {
+                let adjustedIndexPaths = changeset.indexPaths.map({ (indexPath) -> IndexPath in
+                    return IndexPath(row: indexPath.row, section: indexPath.section + 1)
+                })
+                
+                switch changeset.type {
+                    case .delete: tableNode.deleteRows(at: adjustedIndexPaths, with: .fade)
+                    case .insert: tableNode.insertRows(at: adjustedIndexPaths, with: .fade)
+                    case .update: tableNode.reloadRows(at: adjustedIndexPaths, with: .fade)
+                }
+            }
+        }, completion: nil)
     }
 }

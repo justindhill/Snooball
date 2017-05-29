@@ -1,7 +1,7 @@
 target 'Snooball' do
   use_frameworks!
   pod 'Texture'
-  pod 'reddift', :git => "https://github.com/justindhill/reddift", :branch => "master", :submodules => true
+  pod 'reddift', :git => "https://github.com/sonsongithub/reddift", :branch => "master", :submodules => true
   pod 'OpenGraph'
   pod 'TSMarkdownParser'
   pod 'Reveal-SDK'
